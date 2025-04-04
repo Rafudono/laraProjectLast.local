@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use MongoDB\Driver\Session;
@@ -30,7 +32,10 @@ public function showPostsByCategory($id)
 public function showPost($id)
 {
     $post=Post::where('id', $id)->first();
-    return view('singlePost', compact('post'));
+    $comments=Comment::where('post_id', $id);
+    $users=User::all();
+    $categories = Category::all();
+    return view('singlePost', compact('post', 'comments', 'users', 'categories'));
 }
     public function create()
     {

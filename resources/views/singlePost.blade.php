@@ -7,7 +7,12 @@
         <div class="tm-post-full">
             <div class="mb-4">
                 <h2 class="pt-2 tm-color-primary tm-post-title">{{$post->title}}</h2>
-                <p class="tm-mb-40">June 16, 2020 posted by Admin Nat</p>
+
+                @foreach($categories as $cat)
+                    @if($post->category_id == $cat->id)
+                        <p class="tm-mb-40">{{$cat->name}}</p>
+                    @endif
+                @endforeach
                 <p>{{$post->text}}</p>
                 <p>                </p>
                 <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>
@@ -19,7 +24,7 @@
                 <hr class="tm-hr-primary tm-mb-45">
                 <div class="tm-comment tm-mb-45">
                     <figure class="tm-comment-figure">
-                        <img src="img/comment-1.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+                        <img src="/img/comment-1.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
                         <figcaption class="tm-color-primary text-center">Mark Sonny</figcaption>
                     </figure>
                     <div>
@@ -39,7 +44,7 @@
                     <hr>
                     <div class="tm-comment">
                         <figure class="tm-comment-figure">
-                            <img src="img/comment-2.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+                            <img src="/img/comment-2.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
                             <figcaption class="tm-color-primary text-center">Jewel Soft</figcaption>
                         </figure>
                         <p>
@@ -50,6 +55,30 @@
                     </div>
                     <span class="d-block text-right tm-color-primary">June 21, 2020</span>
                 </div>
+                @foreach($comments as $com)
+                    @if($com->post_id==$post->id)
+                            <div class="tm-comment tm-mb-45">
+                                <figure class="tm-comment-figure">
+                                    <img src="/img/comment-3.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+                                    @foreach($users as $user)
+                                        @if($user->id==$com->user_id)
+                                            <figcaption class="tm-color-primary text-center">{{$user->nickname}}</figcaption>
+                                        @endif
+                                    @endforeach
+
+                                </figure>
+                                <div>
+                                    <p>{{$com->text}}</p>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="#" class="tm-color-primary">REPLY</a>
+                                        <span class="tm-color-primary">June 14, 2020</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    @endif
+                @endforeach
+
                 <form action="" class="mb-5 tm-comment-form">
                     <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
                     <div class="mb-4">
