@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('posts');
 Route::get('/post/{id}', [\App\Http\Controllers\HomeController::class, 'showPost'])->name('singlePost');
 Route::get('/posts/byCategory/{id}', [\App\Http\Controllers\HomeController::class, 'showPostsByCategory'])->name('posts');
+Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'showAuthWin'])->name('authWin');
 

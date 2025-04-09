@@ -56,7 +56,15 @@
             Здесь непонятные статьи нагенерированные.. а ещё их можно редачить.. наверное
         </p>
     </div>
+
 </header>
+<ul class="nav col-12 mt-2 justify-content-end ">
+    <li class="">
+       <a href="/auth" class="tm-btn tm-btn-primary text-white">
+            Войти
+       </a>
+    </li>
+</ul>
 @yield('single')
 @yield('posts')
 <script src="{{asset('js/jquery.min.js')}}"></script>
