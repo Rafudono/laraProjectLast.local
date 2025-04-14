@@ -24,6 +24,7 @@ class PostFactory extends Factory
             'slug'=> $this->faker->slug(),
             'text' => $this->faker->paragraph(),
             'category_id' => random_int(1, 5),
+            'user_id' => random_int(1, 5),
         ];
     }
 }

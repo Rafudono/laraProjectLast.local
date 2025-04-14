@@ -33,6 +33,7 @@ public function showPost($id)
 {
     $post=Post::where('id', $id)->first();
     $comments=Comment::where('post_id', $id);
+    var_dump($comments);
     $users=User::all();
     $categories = Category::all();
     return view('singlePost', compact('post', 'comments', 'users', 'categories'));
