@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('posts');
-Route::get('/post/{id}', [\App\Http\Controllers\HomeController::class, 'showPost'])->name('singlePost');
-Route::get('/posts/byCategory/{id}', [\App\Http\Controllers\HomeController::class, 'showPostsByCategory'])->name('posts');
-Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'showAuthWin'])->name('authWin');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/post/{id}', [HomeController::class,'showPost'])->name('singlePost');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

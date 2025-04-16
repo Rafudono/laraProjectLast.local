@@ -62,7 +62,7 @@
                                     <img src="/img/comment-3.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
                                     @foreach($users as $user)
                                         @if($user->id==$com->user_id)
-                                            <figcaption class="tm-color-primary text-center">{{$user->nickname}}</figcaption>
+                                            <figcaption class="tm-color-primary text-center">{{$user->name}}</figcaption>
                                         @endif
                                     @endforeach
 
